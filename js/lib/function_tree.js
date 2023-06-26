@@ -56,7 +56,6 @@ class function_tree
     { this.current_node = this.current_node.prev_neighbor;
     }
   }
-  
 
   // calling this method resets the position of the current node to the root position.
   // thus, this method should only be called when there is no need to record additional
