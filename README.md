@@ -1,6 +1,6 @@
 # MALang README.md
 
-Currently in development. Fulfilling the following specification.
+Currently in development, fulfilling the following specification.
 
 MABasic Specification
 The MusicaAxiomatica input language is designed to enable efficient notation of musical information, with a focus on visual simplicity and conceptual elegance. Any musician who faithfully uses the MA language will find that it is designed with long term musical growth in mind.
@@ -30,7 +30,7 @@ Figuration Duration:       A figuration and duration but no pitch
 Rest Duration:                A duration without a pitch or figuration
 The first object 5[1/4] is a Pitch Duration. The pitch value is the first component of a musical object that may be encountered when scanning a voice from left to right. The pitch value follows immediately after an opening curly brace (the beginning of the voice) or a comma (the separator between objects). Observe that the pitch is not enclosed within any type of brackets. The pitch value is a number between 1 and 12, representing a note in the chromatic scale where the HOME note is defined as 1. In this example (given that HOME = C), the set of pitches is as follows:
 
-    { C = 1, C#/Db = 2, D = 3, D#/Eb = 4, E = 5, F = 6, F#/Gb = 7, G = 8, G#/Ab = 9, A = 10, A#/Bb = 11, B = 12 }
+     { C = 1, C#/Db = 2, D = 3, D#/Eb = 4, E = 5, F = 6, F#/Gb = 7, G = 8, G#/Ab = 9, A = 10, A#/Bb = 11, B = 12 }
 
 Therefore, the four pitch values in example #1 are { E, D, None, None }. It's important to note that the third and fourth elements do not have pitch values. Pitches are not required elements of a musical object.
 
@@ -46,6 +46,6 @@ The third object <8/5>[1/4] indicates a figuration duration. The only new detail
 The last object [1/4] is simply a rest duration. That is, a duration without any sound.
 The MusicaAxiomatica input language will allow for extended functionality by adding a fourth component to the musical object. Content can be enclosed within parentheses at the end of a musical object (before a comma or closing curly brace). This is known as the function component. A generic example is provided below.
 
-    { PITCH_VALUE<FIGURATION_VALUES>[DURATION_VALUES](FUNCTION_CONTENT) }
+     { PITCH_VALUE<FIGURATION_VALUES>[DURATION_VALUES](FUNCTION_CONTENT) }
 
 END OF DOCUMENTATION FOR MABasic
