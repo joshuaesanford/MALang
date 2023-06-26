@@ -15,13 +15,12 @@ The MA language focuses on the chromatic scale. Instead of traditional note name
 
 Example #1:  A block of code demonstrating global assignments and a voice containing the four different types of musical objects.
 
-   ; Text after semi-colons are line comments.
-   
-   (set-home-pitch c)
-   (set-clef soprano)
-   (set-tempo-in-whole-beats 30)
-   (set-measure-in-whole-beats 1)
-   { 5[1/4], 3<10/6/4>[1/4], <8/5>[1/4], [1/4] }
+     ; Text after semi-colons are line comments.
+     (set_home_pitch c)
+     (set_clef soprano)
+     (set_tempo_in_whole_beats 30)
+     (set_measure_in_whole_beats 1)
+     { 5[1/4], 3<10/6/4>[1/4], <8/5>[1/4], [1/4] }
 
 This example is meant to introduce you to the four main types of musical objects.
 
