@@ -16,6 +16,7 @@ The MA language focuses on the chromatic scale. Instead of traditional note name
 Example #1:  A block of code demonstrating global assignments and a voice containing the four different types of musical objects.
 
    ; Text after semi-colons are line comments.
+   
    (set-home-pitch c)
    (set-clef soprano)
    (set-tempo-in-whole-beats 30)
