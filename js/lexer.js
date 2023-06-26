@@ -11,7 +11,7 @@ class MALangLexer
   { const tokens = [];
     let token;
     while (this.pos < this.input.length) 
-	  { // get token at this.input[this.pos] then assign it. increment this.pos.
+    { // get token at this.input[this.pos] then assign it. increment this.pos.
       token = this.get_next_token();
       if (token)
       { tokens.push(token);
@@ -29,64 +29,64 @@ class MALangLexer
     const current_char = this.input[this.pos];
     // handle open brace
     if (current_char === '{') 
-	  { this.pos++;
+    { this.pos++;
       return new Token('OPEN_BRACE', current_char);
     } 
     // handle close brace
     else if (current_char === '}') 
-	  { this.pos++;
+    { this.pos++;
         return new Token('CLOSE_BRACE', current_char);
     } 
     // handle open square bracket
     else if (current_char === '[') 
- 	  { this.pos++;
+    { this.pos++;
         return new Token('OPEN_SQUARE_BRACKET', current_char);
     } 
     // handle close square bracket
     else if (current_char === ']') 
-	  { this.pos++;
+    { this.pos++;
         return new Token('CLOSE_SQUARE_BRACKET', current_char);
     } 
     // handle open angle bracket
     else if (current_char === '<') 
-	  { this.pos++;
+    { this.pos++;
         return new Token('OPEN_ANGLE_BRACKET', current_char);
     } 
     // handle close angle bracket
     else if (current_char === '>') 
-	  { this.pos++;
+    { this.pos++;
         return new Token('CLOSE_ANGLE_BRACKET', current_char);
     } 
     // handle open paren
     else if (current_char === '(') 
-	  { this.pos++;
+    { this.pos++;
         return new Token('OPEN_PAREN', current_char);
     } 
     // handle close paren
     else if (current_char === ')') 
-	  { this.pos++;
+    { this.pos++;
         return new Token('CLOSE_PAREN', current_char);
     } 
     // handle comma
     else if (current_char === ',') 
-	  { this.pos++;
+    { this.pos++;
         return new Token('COMMA', current_char);
-	  } 
+    } 
     // handle plus
     else if (current_char === '+') 
-	  { this.pos++;
+    { this.pos++;
 		  return new Token('PLUS', current_char);
-	  }
+    }
     // handle minus
     else if (current_char == '-') 
-	  { this.pos++
+    { this.pos++
   		return new Token('MINUS', current_char);
     } 
     // the `;` character denotes line comments			
     else if (current_char === ';') 
-    // all characters including and beyond a semi-colon are skipped, until a linebreak occurs.
-	  { while (this.pos < this.input.length && this.input[this.pos] !== '\n') 
-	    { this.pos++;
+    { // all characters including and beyond a semi-colon are skipped, until a linebreak occurs.
+      while (this.pos < this.input.length && this.input[this.pos] !== '\n') 
+      { this.pos++;
       }
       // skip the linebreak too.
       this.pos++;
@@ -95,31 +95,31 @@ class MALangLexer
     } 
     // handle slash
     else if (current_char === '/') 
-	  { this.pos++;
+    { this.pos++;
       return new Token('SLASH', current_char);
     } 
     // handle numbers
     else if (/\d/.test(current_char)) 
-	  { let number_value = current_char;
+    { let number_value = current_char;
       this.pos++;
       while (this.pos < this.input.length && /\d/.test(this.input[this.pos])) 
-		  { number_value += this.input[this.pos];
+      { number_value += this.input[this.pos];
         this.pos++;
       }
       return new Token('NUMBER', number_value);
     } 
     // handle whitespace
     else if (/\s/.test(current_char)) 
-	  { this.pos++;
+    { this.pos++;
       return null;
     } 
     // handle identifiers
     else if (/[a-zA-Z_]/.test(current_char)) 
-	  { let identifier_value = current_char;
+    { let identifier_value = current_char;
       this.pos++;
       // in range and the new input character is still a letter or underscore? 
       while (this.pos < this.input.length && /[a-zA-Z_]/.test(this.input[this.pos])) 
-	    { // collect chars for the identifier value.
+      { // collect chars for the identifier value.
         identifier_value += this.input[this.pos];
         // move on to the next char.
         this.pos++;
