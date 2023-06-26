@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MALang Web App</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <textarea id="input_code" placeholder="Enter your MALang code here"></textarea>
+    <button id="parse_button">Parse Code</button>
+    <div id="output"></div>
+    <script src="js/lib/token.js"></script>
+    <script src="js/lexer.js"></script>
+    <script>
+        document.getElementById("parseButton").addEventListener("click", () => {
+            const input_code = document.getElementById("input_code").value;
+            const lexer = new MALangLexer(input_code);
+            const tokens = lexer.tokenize();
+            const outputDiv = document.getElementById("output");
+            outputDiv.innerHTML = tokens.map(token => token.to_string()).join("<br>");
+        });
+    </script>
+</body>
+</html>
