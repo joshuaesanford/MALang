@@ -103,7 +103,7 @@ class MALangParser
           this.current_node = {}; // reset node for new function tree.
           return null;
         }
-      }
+      } // end of case this.states.VOICE_CLOSED_FUNCTION_CLOSED
       case this.states.FUNCTION_OPEN_OPERATOR_NEXT:
       { // function has just been opened so we set node type to function tree.
         this.current_node.type = this.node_types.FUNCTION_TREE;
@@ -173,7 +173,7 @@ class MALangParser
   { try
     { let return_code;
       while (this.pos < this.tokens.length) 
-	    { // get_next_node returns negative if failed, positive if current_node is ready to be
+      { // get_next_node returns negative if failed, positive if current_node is ready to be
         // pushed, and null if the current_node is not ready to be pushed.
         return_code = this.get_next_node();
         // return code is non-null and positive? current_node is ready to be added.
