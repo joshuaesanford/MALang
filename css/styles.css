@@ -12,3 +12,14 @@ button {
     display: block;
     margin: 10px 0;
 }
+ul {
+    border-style: solid;
+    width: auto;
+    height: auto;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+li {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}

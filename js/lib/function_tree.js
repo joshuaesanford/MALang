@@ -7,6 +7,8 @@ class node
     this.first_child = null;
     this.next_neighbor = null;
     this.prev_neighbor = null;
+    this.is_operator = false;
+    this.has_been_closed = false;
   }
 
   create_first_child(first_child_value)
@@ -14,15 +16,25 @@ class node
     new_first_child.parent = this;
     new_first_child.value = first_child_value;
     this.first_child = new_first_child;
+    console.log("Creating first child (" + this.first_child.value + ") of parent (" + this.value + ")");
   }
   
   create_next_neighbor(next_neighbor_value)
   { let new_next_neighbor = new node();
     new_next_neighbor.prev_neighbor = this;
+    if (this.parent !== null)
+    { new_next_neighbor.parent = this.parent;
+    }
     new_next_neighbor.value = next_neighbor_value;
     this.next_neighbor = new_next_neighbor;
+    console.log("Creating next neighbor (" + this.next_neighbor.value + ") of prev neighbor (" + this.value +
+      ")");
   }
 } // end of node class definition
+
+// in parser.js this.entry_types.FUNCTION_TREE is equal to a constant of 0.
+// this is important knowledge for the deep copy method.
+const FUNCTION_TREE = 0; 
 
 class function_tree
 { // CONSTRUCTOR
@@ -30,7 +42,8 @@ class function_tree
   { // the root node is always constructed with the value of the root operator.
     this.root_node = new node(); 
     this.root_node.value = operator; // root_node should never again be altered in the code.
-    this.current_node = root_node;
+    this.root_node.is_operator = true;
+    this.current_node = this.root_node;
   }
 
   move_to_first_child()
@@ -65,9 +78,10 @@ class function_tree
   // **returns**: function_tree object
   create_deep_copy()
   { const new_tree = new function_tree(this.root_node.value)
+    new_tree.type = FUNCTION_TREE;
     this.current_node = this.root_node;
     // root node has no first child? return the single node as the new tree.
-    if (!this.root_node.first_child)
+    if (this.root_node.first_child === null)
     { return new_tree;
     }
     // handle first child of root node
@@ -78,42 +92,58 @@ class function_tree
       new_tree.move_to_first_child();
       // move the class's current node equivalently.
       this.move_to_first_child();
+      if (this.current_node.is_operator)
+      { new_tree.current_node.is_operator = true;
+      }
     }
-    let count = 0;
     // the algorithm below will always return the current node to root. 
     while (this.current_node !== this.root_node)
     { // always barrel down as far as possible before looking for neighbors.
-      while (this.current_node.first_child)
+      while (this.current_node.first_child !== null)
       { // create new first child node for new tree.
         new_tree.current_node.create_first_child(this.current_node.first_child.value);
         new_tree.move_to_first_child();
         this.move_to_first_child();
+        if (this.current_node.is_operator)
+        { new_tree.current_node.is_operator = true;
+        }
       } 
       // once you are at the bottom, can you find a next neighbor?
-      if (this.current_node.next_neighbor)
+      if (this.current_node.next_neighbor !== null)
       { // create next neighbor node for new tree.
         new_tree.current_node.create_next_neighbor(this.current_node.next_neighbor.value);
         new_tree.move_to_next_neighbor();
         this.move_to_next_neighbor();
+        if (this.current_node.is_operator)
+        { new_tree.current_node.is_operator = true;
+        }
       }
       // otherwise,
       else 
-      { // go up the parents until there is a new neighbor or you return to root.
+      {// console.log("Does neighbor of (" + this.current_node.value + ") exist: " + (this.current_node.next_neighbor !== null));
+        //console.log("Does parent of (" + this.current_node.value + ") exist: " + (this.current_node.parent_node.value));
+        // go up the parents until there is a new neighbor or you return to root.
         while (this.current_node.parent !== null && this.current_node.next_neighbor === null)
         { this.move_to_parent();
           new_tree.move_to_parent();
         }
         // made it back to root? return the new tree.
         if (this.current_node === this.root_node)
-        { return new_tree;
+        { console.log("deep copy is returning");
+          return new_tree;
         }
         // found a next neighbor? copy and move to it.
         else if (this.current_node.next_neighbor !== null)
         { new_tree.current_node.create_next_neighbor(this.current_node.next_neighbor.value);
           new_tree.move_to_next_neighbor();
           this.move_to_next_neighbor();
+          if (this.current_node.is_operator)
+          { new_tree.current_node.is_operator = true;
+          }
         }
       }
-    } // end of tree loop
+    }
+    console.log("deep copy is returning");
+    return new_tree;
   } // end of create_deep_copy()
 }

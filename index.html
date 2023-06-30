@@ -11,14 +11,23 @@
     <button id="parse_button">Parse Code</button>
     <div id="output"></div>
     <script src="js/lib/token.js"></script>
+    <script src="js/lib/function_tree.js"></script>
+    <script src="js/lib/voice_object.js"></script>
     <script src="js/lexer.js"></script>
+    <script src="js/parser.js"></script>
     <script>
-        document.getElementById("parseButton").addEventListener("click", () => {
+        document.getElementById("parse_button").addEventListener("click", () => {
             const input_code = document.getElementById("input_code").value;
             const lexer = new MALangLexer(input_code);
             const tokens = lexer.tokenize();
+            const parser = new MALangParser(tokens);
+            parser.parse();
+            const ast = parser.ast;
+			const ast_output = parser.print_ast(ast);
             const outputDiv = document.getElementById("output");
             outputDiv.innerHTML = tokens.map(token => token.to_string()).join("<br>");
+			outputDiv.innerHTML += "<br><br>"
+            outputDiv.innerHTML += ast_output;
         });
     </script>
 </body>
