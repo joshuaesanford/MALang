@@ -722,6 +722,11 @@ class MALangParser
             while (this.ast[i].current_node != this.ast[i].root_node &&
                    this.ast[i].current_node.next_neighbor === null)
             { this.ast[i].move_to_parent();
+              // i need to think about this conditional some more. i think this works because
+              // the outer </ul> will always be handled as a result of finding no next neighbor.
+              if (this.ast[i].current_node.parent !== this.ast[i].root_node)
+              { ast_string += "</ul>";
+              }
             }
             if (this.ast[i].current_node.next_neighbor !== null)
             { this.ast[i].move_to_next_neighbor();
