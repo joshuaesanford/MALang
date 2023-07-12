@@ -1,8 +1,7 @@
 # MALang README.md
 
-Currently in development, fulfilling the following specification.
-
 MABasic Specification
+
 The MusicaAxiomatica input language is designed to enable efficient notation of musical information, with a focus on visual simplicity and conceptual elegance. Any musician who faithfully uses the MA language will find that it is designed with long term musical growth in mind.
 The MusicaAxiomatica language focuses on four basic musical objects ordered within a musical voice.
 A voice is a stream of musical objects, delimited by open and closed curly braces. A general definition is given below.
