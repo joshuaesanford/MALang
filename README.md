@@ -3,13 +3,16 @@
 MABasic Specification
 
 The MusicaAxiomatica input language is designed to enable efficient notation of musical information, with a focus on visual simplicity and conceptual elegance. Any musician who faithfully uses the MA language will find that it is designed with long term musical growth in mind.
+
 The MusicaAxiomatica language focuses on four basic musical objects ordered within a musical voice.
 A voice is a stream of musical objects, delimited by open and closed curly braces. A general definition is given below.
 
      voice object   :   { collection of duration objects }
 
 In mathematics, curly braces are used to denote sets. Similarly, in the MA language, a voice represents a set of musical objects that each possess the property of duration.
+
 At any given moment, only one musical object can be active within a voice. Refining our definition further, a voice is a series of musical objects that unfold over time, one after the other.
+
 The MA language focuses on the chromatic scale. Instead of traditional note names, we define the home pitch and use numbers 1 through 12 to indicate the notes relative to the key center. While it may seem like a lot of effort, it is standard practice to refer to scale degrees using numbers - though we encourage base-12 as opposed to base-7. It does not take long to get used to a base-12 number system. Additionally, the names of the 12 numbers easily work as solfeggio syllables (e.g. "one, two, three, four, five, six, sev, eight, nine, ten, lev, twelve"). The MA philosophy is to utilize systems which will improve long term musicianship. As a musician devotes more time to contemplating home pitches and their base-12 note numbers, they will become increasingly adept at discovering musical relationships across all key centers. It is vitally important to become conversant in both base-12 and base-7. Base-7 allows for the consideration of intervals that have shared qualities relative to common scales and chords, but it forces the musician to move conceptually between major and minor contexts. Base-12 forces the musician to "understand the 12 notes from each of the 12 notes". Any understanding developed using base-7 can be assimilated under base-12 while increasing the universality and elegance of one's musical thinking.
 
 Example #1:  A block of code demonstrating global assignments and a voice containing the four different types of musical objects.
